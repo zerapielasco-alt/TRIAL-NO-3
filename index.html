@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reading Activity</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --border: #e2e8f0;
+      --success: #16a34a;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: var(--card-bg);
+      max-width: 600px;
+      width: 100%;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header h1 {
+      font-size: 1.1rem;
+      margin: 0;
+      color: #64748b;
+    }
+
+    .page-indicator {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .story-text {
+      background-color: #f1f5f9;
+      padding: 16px;
+      border-left: 4px solid var(--primary);
+      border-radius: 4px;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .question-box p {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .options label {
+      display: block;
+      padding: 10px;
+      margin: 6px 0;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .options label:hover {
+      background-color: var(--bg);
+    }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: var(--primary-hover);
+    }
+
+    button:disabled {
+      background-color: #cbd5e1;
+      cursor: not-allowed;
+    }
+
+    #results-screen {
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .score-text {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--success);
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>Interactive Reading</h1>
+    <span class="page-indicator" id="pageIndicator">Page 1 of 5</span>
+  </div>
+
+  <!-- Page 1 -->
+  <div class="page" id="page-1">
+    <h2>Chapter 1</h2>
+    <div class="story-text">POGI SI ZEIK.</div>
+    <div class="question-box">
+      <p>Question 1: Pogi ba si Zeik?</p>
+      <div class="options">
+        <label><input type="radio" name="q1" value="A"> YES</label>
+        <label><input type="radio" name="q1" value="B"> NO</label>
+        <label><input type="radio" name="q1" value="C"> SAKTO LANG</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 2 -->
+  <div class="page" id="page-2" style="display:none;">
+    <h2>Chapter 2</h2>
+    <div class="story-text">Panget si Ayitttt.</div>
+    <div class="question-box">
+      <p>Question 2: Panget ba si Ayitttt?</p>
+      <div class="options">
+        <label><input type="radio" name="q2" value="A"> YES</label>
+        <label><input type="radio" name="q2" value="B"> NO</label>
+        <label><input type="radio" name="q2" value="C"> SAKTO LANG</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 3 -->
+  <div class="page" id="page-3" style="display:none;">
+    <h2>Chapter 3</h2>
+    <div class="story-text">Panget si Ana.</div>
+    <div class="question-box">
+      <p>Question 3: Panget ba si Ana?</p>
+      <div class="options">
+        <label><input type="radio" name="q3" value="A"> YES</label>
+        <label><input type="radio" name="q3" value="B"> NO</label>
+        <label><input type="radio" name="q3" value="C"> SAKTO LANG</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 4 -->
+  <div class="page" id="page-4" style="display:none;">
+    <h2>Chapter 4</h2>
+    <div class="story-text">Panget si Shane.</div>
+    <div class="question-box">
+      <p>Question 4: Panget ba si Shane?</p>
+      <div class="options">
+        <label><input type="radio" name="q4" value="A"> YES</label>
+        <label><input type="radio" name="q4" value="B"> NO</label>
+        <label><input type="radio" name="q4" value="C"> SAKTO LANG</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 5 -->
+  <div class="page" id="page-5" style="display:none;">
+    <h2>Chapter 5</h2>
+    <div class="story-text">Panget si Allain at Lance.</div>
+    <div class="question-box">
+      <p>Question 5: Panget ba si Allain at Lance?</p>
+      <div class="options">
+        <label><input type="radio" name="q5" value="A"> YES</label>
+        <label><input type="radio" name="q5" value="B"> NO</label>
+        <label><input type="radio" name="q5" value="C"> SAKTO</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results Screen -->
+  <div class="page" id="page-results" style="display:none;">
+    <div id="results-screen">
+      <h2>Activity Complete!</h2>
+      <p>Your total score:</p>
+      <div class="score-text" id="scoreDisplay">0 / 5</div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="controls" id="controlBox">
+    <button id="prevBtn" type="button" disabled>Previous</button>
+    <button id="nextBtn" type="button">Next</button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    let currentPage = 1;
+    const totalPages = 5;
+    const correctAnswers = { q1: 'A', q2: 'A', q3: 'A', q4: 'A', q5: 'A' };
+
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const pageIndicator = document.getElementById('pageIndicator');
+
+    function updateView() {
+      // Hide all main pages
+      for (let i = 1; i <= totalPages; i++) {
+        document.getElementById('page-' + i).style.display = 'none';
+      }
+
+      // Show active page
+      document.getElementById('page-' + currentPage).style.display = 'block';
+
+      // Update indicators and buttons
+      pageIndicator.innerText = 'Page ' + currentPage + ' of ' + totalPages;
+      prevBtn.disabled = (currentPage === 1);
+      nextBtn.innerText = (currentPage === totalPages) ? 'Finish & Submit' : 'Next';
+    }
+
+    nextBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (currentPage < totalPages) {
+        currentPage++;
+        updateView();
+      } else {
+        calculateScore();
+      }
+    });
+
+    prevBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (currentPage > 1) {
+        currentPage--;
+        updateView();
+      }
+    });
+
+    function calculateScore() {
+      let score = 0;
+      for (let q in correctAnswers) {
+        const selected = document.querySelector('input[name="' + q + '"]:checked');
+        if (selected && selected.value === correctAnswers[q]) {
+          score++;
+        }
+      }
+
+      // Hide all question pages & controls
+      for (let i = 1; i <= totalPages; i++) {
+        document.getElementById('page-' + i).style.display = 'none';
+      }
+      document.getElementById('controlBox').style.display = 'none';
+      pageIndicator.style.display = 'none';
+
+      // Display results
+      document.getElementById('page-results').style.display = 'block';
+      document.getElementById('scoreDisplay').innerText = score + ' out of ' + totalPages;
+    }
+
+    // Initialize initial state
+    updateView();
+  });
+</script>
+
+</body>
+</html>
